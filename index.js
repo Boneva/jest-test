@@ -45,7 +45,7 @@ app.get("/joke",(req,res) => {
         response.on('end', () => {
             res.send(data);
         });
-    })
+    });
 });
 
 app.listen(port, () => {
