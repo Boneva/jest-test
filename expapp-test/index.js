@@ -1,18 +1,16 @@
 const express = require("express");
 const app = express();
-const https = require("https");
 const port = 3000;
 
-/*Array object model*/
 function allTodos() {
     return [{
-        id: 1,
+        id:1,
         name: "Finished writing a blogpost"
     },{
-        id: 2,
+        id:2,
         name: "Get pizza for dinner"
     },{
-        id: 3,
+        id:3,
         name: "Wake up at 7:30am"
     },];
 }
@@ -21,6 +19,7 @@ app.get("/",(req,res) => {
     res.send({
         date: new Date(),
         msg: "Greetings!"
+
     });
 });
 
@@ -36,20 +35,21 @@ app.get("/todo/:id",(req,res) => {
 });
 
 app.get("/joke",(req,res) => {
-    const url = "https://api.chucknorris.io/jokers/random";
-    https.get(url, (response) => {
-        let data = '';/*keep appending data to chunks as we receive it */
+    const url = "https://api.chucknorris.io/jokes/random";
+    htpps.get(url, (response) => {
+        let data = ''; 
         response.on('data', (chunk) => {
             data += chunk;
         });
         response.on('end', () => {
             res.send(data);
         });
-    });
+
+    })
 });
 
 app.listen(port, () => {
-    console.log('Listening on port => ${port}');
+    console.log(`Listening on port => ${port}`);
 });
 
 module.exports = app;
