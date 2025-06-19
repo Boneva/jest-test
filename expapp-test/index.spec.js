@@ -3,18 +3,19 @@ const app = require('./index');
 
 describe("Test todo methods", () => {
     it(`Returns all todos`, async done => {
-       await request(app).get("/todo").expect(200).then((response) => {
-          expect(response.body.length).toBe(3);
-       });
-     done();
+        await request(app).get("/todo").expect(200).then((response) => {
+            expect(response.body.length).toBe(3);
+        });
+        done();
     });
     it(`Returns a todo with id:${2}`, async done => {
         await request(app).get("/todo/2").expect(200).then((response) => {
             expect(response.body.name).toBe("Get pizza for dinner");
         });
-         done();
+        done();
     });
 });
+
 
 describe("Test responses from querying an external API", () => {
     it(`Should retrieve a random Chuck Norris joke`, async done => {
@@ -23,7 +24,6 @@ describe("Test responses from querying an external API", () => {
         expect(joke.value).toBeTruthy();
         done();
     });
-
     it(`No 2 Chuck Norris jokes will be the same`, async done => {
         let joke1 = await request(app).get("/joke");
         let joke2 = await request(app).get("/joke");
