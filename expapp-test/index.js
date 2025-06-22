@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const https = require('https');
 
 function allTodos() {
     return [{
@@ -36,7 +37,8 @@ app.get("/todo/:id",(req,res) => {
 
 app.get("/joke",(req,res) => {
     const url = "https://api.chucknorris.io/jokes/random";
-    htpps.get(url, (response) => {
+    https.get(url, (response) => {
+
         let data = ''; 
         response.on('data', (chunk) => {
             data += chunk;
